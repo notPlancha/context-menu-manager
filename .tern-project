@@ -1,7 +1,8 @@
 {
   "ecmaVersion": 8,
   "libs": [
-    "browser"
+    "browser",
+    "jquery"
   ],
   "loadEagerly": [],
   "dontLoad": [

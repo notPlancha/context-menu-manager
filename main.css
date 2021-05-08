@@ -12,4 +12,22 @@ body{
   height: 20px;
   width: 100vw;
   background-color: lightgray;
+  border-color: lightgray;
+  border:0px;
+  margin-top: 10px;
+  cursor:pointer;
+}
+
+h1{
+  text-align: center;
+}
+
+.new{
+  text-align: center;
+  font-weight: 900;
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
