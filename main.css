@@ -1,3 +1,13 @@
+body{
+  margin:0px;
+}
+
+.line-buttons{
+  margin: 10px;
+  align-items: center;
+  text-align: center;
+}
+
 .list{
   height: 20px;
   width: 100vw;
