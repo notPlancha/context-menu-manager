@@ -8,16 +8,16 @@
   </head>
   <body>
     <div class="buttons">
-      <div class="line">
-        <button type="button" name="Refresh"></button>
-        <button type="button" name="Save"></button>
+      <div class="line-buttons">
+        <button type="button" name="Refresh">Refresh</button>
+        <button type="button" name="Save">Save</button>
       </div>
-      <div class="line">
-        <button type="button" name="Load"></button>
-        <button type="button" name="Merge"></button>
+      <div class="line-buttons">
+        <button type="button" onclick="getContextItens()" name="Load">Load</button>
+        <button type="button" name="Merge">Merge</button>
       </div>
     </div>
-    <div class="context-menu-buttons" onload="">
+    <div class="context-menu-buttons" onload="getContextItens()">
       <div class="New list">
 
       </div>
