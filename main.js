@@ -1,7 +1,12 @@
+//functions
+
+
+
+
 //Pre loading
 $(document).ready(
   function() {
-    $('button[name="Refresh"]').click(
+    $('button[name="Refresh"]').on('click',
       function() {
         location.reload();
       }
@@ -11,9 +16,9 @@ $(document).ready(
 
 $(document).ready(
   function() {
-    $('button[name="Save"]').click(
+    $('button[name="Save"]').on('click',
       function() {
-        location.reload();
+        // TODO:
       }
     )
   }
@@ -21,9 +26,11 @@ $(document).ready(
 
 $(document).ready(
   function() {
-    $('button[name="Load"]').click(
+    $('button[name="Load"]').on('click',
       function() {
-        location.reload();
+        $.get('./files/debug.txt', function(data){
+          console.log(data);
+        })
       }
     )
   }
@@ -31,9 +38,9 @@ $(document).ready(
 
 $(document).ready(
   function() {
-    $('button[name="Merge"]').click(
+    $('button[name="Merge"]').on('click',
       function() {
-        location.reload();
+        // TODO:
       }
     )
   }
@@ -42,6 +49,7 @@ $(document).ready(
 //loading
 $(document).ready(
   function() {
+    // TODO: get the things
     $(".context-menu-buttons")
       .append('<a><div class="list"></div></a>');
     $(".context-menu-buttons")
@@ -49,14 +57,25 @@ $(document).ready(
   }
 );
 
+$(document).ready(
+  function(){
+    $('div.list').on('click',
+      function(){
+        // TODO:
+      }
+    )
+  }
+)
 
 //post-loading
 $(document).ready(
   function() {
-    $('div.new').click(
-      function() {
-        $('<a><div class="list">Untitled</div></a>').insertBefore(".new")
-      }
+    $('div.new')
+      .off('click')
+      .on('click',
+        function() {
+          $('<a><div class="list">Untitled</div></a>').insertBefore(".new")
+        }
     )
   }
 );
