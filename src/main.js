@@ -1,7 +1,4 @@
-//functions
-
-
-
+const $ = jQuery = require('jquery');
 
 //Pre loading
 $(document).ready(
