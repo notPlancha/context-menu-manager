@@ -1,4 +1,10 @@
 const $ = jQuery = require('jquery');
+const regedit = require('regedit');
+//https://www.npmjs.com/package/regedit#a-note-about-electron
+
+//functions
+
+
 
 //Pre loading
 $(document).ready(
@@ -25,9 +31,7 @@ $(document).ready(
   function() {
     $('button[name="Load"]').on('click',
       function() {
-        $.get('./files/debug.txt', function(data){
-          console.log(data);
-        })
+
       }
     )
   }
@@ -51,6 +55,14 @@ $(document).ready(
       .append('<a><div class="list"></div></a>');
     $(".context-menu-buttons")
       .append('<a><div class="new list">+</div></a>');
+
+      regedit.list(
+        ['HKLM\\\SOFTWARE\\Classes\\*\\shell'],//TODO check if it's working
+        function(err, result) {
+          console.log("result from regedit");
+          console.log(result);
+        }
+      )
   }
 );
 
