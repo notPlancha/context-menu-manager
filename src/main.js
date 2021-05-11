@@ -1,27 +1,45 @@
 const $ = jQuery = require('jquery');
-const Registry = require('winreg');
 const regedit = require('regedit');
+
+var regs = {
+  values : [],
+  push: function(item){
+    this.values.push(item);
+    $(".context-menu-buttons")
+      .append(`<a><div class="list">${item.title}</div></a>`);
+  },
+  remove: function(item){
+    for (var i = 0; i < this.values.length; i++) {
+      if(this.values[i].title == item) {
+        return this.values.splice();
+      }
+    }
+    return null;
+  }
+}
 //https://www.npmjs.com/package/regedit#a-note-about-electron
 
 
 //functions
 
-function getFromKey(hive, pathWithoutHive){
-  let regs = new Registry(
-    {
-    hive:hive,
-    key:pathWithoutHive
-    }
-  )
-  regs.values(
-    function(err, itens){
-      if(err) {
-        console.log('Error on getting values:' + err);
-        return null;
+function getFromKey(path, addToRegs=true){ // Can't figure out how to return the result, so everything has to be done here
+
+  regedit.list(
+    path,
+    function(err, result){
+      var item= {};
+      for (var i = 0; i < result[path].keys.length; i++) {
+        key = result[path].keys[i];
+        item.title = key;
+        regedit.list(
+          path + "\\" + key,
+          function(err, returned){
+            //TODO check what to put here
+          }
+        )
       }
-      else{
-        return itens;
-      }
+
+      regs.push(item);
     }
   )
 }
@@ -71,12 +89,6 @@ $(document).ready(
 $(document).ready(
   function() {
     // TODO: get the things
-    var regs = [];
-    regedit.list(['HKCU\\SOFTWARE', 'HKLM\\SOFTWARE'])
-    .on('data', function(entry) {
-    console.log(entry.key)
-    console.log(entry.data)
-})
     $(".context-menu-buttons")
       .append('<a><div class="list"></div></a>');
     $(".context-menu-buttons")
@@ -84,7 +96,10 @@ $(document).ready(
 
 
 
-    let reg = getFromKey(Registry.HKLM, '\\SOFTWARE\\Classes\\*\\shell');
+    regs.push(getFromKey('HKLM\\SOFTWARE\\Classes\\*\\shell'));
+    regs.push(getFromKey('HKLM\\SOFTWARE\\Classes\\*\\shell\\Atom KI ext'));
+    console.log("regs:");
+    console.log(regs);
   }
 );
 
